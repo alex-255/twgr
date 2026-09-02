@@ -19,13 +19,35 @@ def ticket.price
  5.50
 end
 
-print "This ticket is for: "
-print ticket.event + ", at "
-print ticket.venue + ", on "
-puts ticket.date + "."
-print "The performer is "
-puts ticket.performer + "."
-print "The seat is "
-print ticket.seat + ", "
-print "and it costs $"
-puts "%.2f." % ticket.price
+# print "This ticket is for: "
+# print ticket.event + ", at "
+# print ticket.venue + ", on "
+# puts ticket.date + "."
+# print "The performer is "
+# puts ticket.performer + "."
+# print "The seat is "
+# print ticket.seat + ", "
+# print "and it costs $"
+# puts "%.2f." % ticket.price
+
+puts "This ticket is for: #{ticket.event}, at #{ticket.venue}.\n" +
+"The performer is #{ticket.performer}.\n" +
+"The seat is #{ticket.seat}, " +
+"and it costs $#{"%.2f" % ticket.price}."
+
+# puts ticket.object_id
+
+# print "Information desired: "
+# request = gets.chomp
+
+# if ticket.respond_to?(request)
+#  puts ticket.send(request)
+# else
+#  puts "No such information available"
+# end
+
+def ticket.print_details(*x)
+ x.each { |detail| puts "This ticket is #{detail}" }
+end
+
+ticket.print_details(ticket.price, ticket.seat)
