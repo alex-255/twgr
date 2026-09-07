@@ -10,11 +10,17 @@
 
 # class Ticket
 class Ticket
+  VENUES = ['Convention Center', 'Fairgrounds', 'Town Hall'] # rubocop:disable Style/MutableConstant
   attr_reader :venue, :date
   attr_accessor :price
 
   def initialize(venue, date)
-    @venue = venue
+    if VENUES.include?(venue) # rubocop:disable Style/GuardClause
+      @venue = venue
+    else
+      raise ArgumentError, "Unknown venue #{venue}"
+    end
+
     @date = date
   end
 end
@@ -31,3 +37,15 @@ cc.price = 10.00
 fg.price = 18.00
 highest = Ticket.most_expensive(th, cc, fg)
 puts "The highest-priced ticket is the one for #{highest.venue}."
+
+# puts "Testing the response of a ticket instance...."
+# wrong = fg.most_expensive
+
+puts "We've closed the class definition."
+puts 'So we have to use the path notation to reach the constant.'
+puts 'The venues are:'
+puts Ticket::VENUES
+
+Ticket::VENUES << 'High School Gym' # But frozzen array can't be modified.
+puts 'The venues are:'
+puts Ticket::VENUES
