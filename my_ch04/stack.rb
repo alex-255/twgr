@@ -14,5 +14,5 @@ puts s.stack
 taken = s.take_from_stack
 puts 'Removed this object:'
 puts taken
-puts 'Now on stack:'
+puts 'Now on stack (objects):'
 puts s.stack
